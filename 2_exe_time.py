@@ -9,13 +9,13 @@ def create_violinplot(d: dict):
     without_smell = d['without_smell']
 
     dados = pd.DataFrame({
-        'Screen Flow (steps)': with_smell + without_smell,
+        'Time (in seconds)': with_smell + without_smell,
         'Test': ['With Smell'] * len(with_smell) + ['Without Smell'] * len(without_smell)
     })
 
     # Crie o violin plot
     plt.figure(figsize=(8, 6))
-    sns.violinplot(data=dados, x='Test', y='Screen Flow (steps)', hue='Test', dodge=False,
+    sns.violinplot(data=dados, x='Test', y='Time (in seconds)', hue='Test', dodge=False,
                    palette=["red", "green"])
 
     # Adicione os pontos médios
@@ -26,7 +26,7 @@ def create_violinplot(d: dict):
     # Personalize o gráfico
     plt.title(d['title'])
     plt.xlabel("Test")
-    plt.ylabel("Screen Flow (steps)")
+    plt.ylabel("Time (in seconds)")
 
     plt.savefig(f'violinplot_{d["name"]}.png', dpi=300)
 
